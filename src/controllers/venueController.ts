@@ -34,12 +34,12 @@ async function getVenue(req: Request, res: Response, next: NextFunction) {
 }
 
 async function postVenues(req: Request, res: Response, next: NextFunction) {
-  const { name, desc } = req.body;
+  const { name, description } = req.body;
   try {
     const venue = await prisma.venues.create({
       data: {
         name: name,
-        description: desc,
+        description: description,
       },
     });
     return res.status(200).json(venue);
@@ -64,20 +64,20 @@ async function deleteVenue(req: Request, res: Response, next: NextFunction) {
 }
 
 async function updateVenue(req: Request, res: Response, next: NextFunction) {
-    const { id, name, desc } = req.body;
-    try {
-        const venue = await prisma.venues.update({
-        where: { id: id },
-        data: {
-            name: name,
-            description: desc,
-        },
-        });
-        return res.status(200).json(venue);
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json(error);
-    }
-    }
+  const { id, name, description } = req.body;
+  try {
+    const venue = await prisma.venues.update({
+      where: { id: id },
+      data: {
+        name: name,
+        description: description,
+      },
+    });
+    return res.status(200).json(venue);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json(error);
+  }
+}
 
 export default { getVenue, getVenues, postVenues, deleteVenue, updateVenue };

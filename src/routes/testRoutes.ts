@@ -1,12 +1,23 @@
 import express from 'express'
 import testController from '../controllers/testController'
 import { validate } from '../validation'
-
-const router = express.Router()
 import { testSchema } from '../models/test'
 
 
-router.get('/', testController.getHello)
-router.post('/',validate(testSchema), testController.postTest)
 
+
+const router = express.Router()
+
+
+router.get('/', testController.getHello)
+// router.post('/',validate(testSchema), testController.postTest)
+
+
+// Fusion Test
+
+router.get('/fusion', testController.fusionHello)
+router.post('/fusion/panic', testController.fusionPanic)
+router.get('/fusiontest', testController.fusionTest)
+router.get('/fusionLoginTest', testController.fusionLoginTest)
+router.get('/fusionLoginValidate', testController.fusionValidateToken)
 export default router
