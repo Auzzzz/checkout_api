@@ -3,7 +3,6 @@ import express from "express";
 import routes from "./routes";
 
 const prisma = new PrismaClient();
-
 const app = express();
 const port = process.env.PORT || 3000;
 

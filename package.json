@@ -14,6 +14,7 @@
     "generate": "prisma generate"
   },
   "dependencies": {
+    "@fusionauth/typescript-client": "^1.48.0",
     "@prisma/client": "^4.8.1",
     "cookie-parser": "^1.4.6",
     "express": "^4.18.2",

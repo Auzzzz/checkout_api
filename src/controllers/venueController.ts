@@ -2,9 +2,6 @@ import { Request, Response, NextFunction } from "express";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-// function getHello(req: Request, res: Response, next: NextFunction) {
-//   res.send("Hello World! from Venue Controller!");
-// }
 
 async function getVenues(req: Request, res: Response, next: NextFunction) {
   try {
@@ -33,7 +30,7 @@ async function getVenue(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-async function postVenues(req: Request, res: Response, next: NextFunction) {
+async function postVenue(req: Request, res: Response, next: NextFunction) {
   const { name, description } = req.body;
   try {
     const venue = await prisma.venues.create({
@@ -80,4 +77,4 @@ async function updateVenue(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-export default { getVenue, getVenues, postVenues, deleteVenue, updateVenue };
+export default { getVenue, getVenues, postVenue, deleteVenue, updateVenue };
