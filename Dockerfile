@@ -1,4 +1,4 @@
-FROM node:20
+FROM node:20.7.0
 
 # Working Dir
 WORKDIR /usr/src/app
@@ -14,6 +14,7 @@ COPY . .
 
 #build
 RUN npm run build
+RUN npx prisma generate
 
 # Expose port
 EXPOSE 3000
