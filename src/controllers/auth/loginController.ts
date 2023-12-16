@@ -65,7 +65,7 @@ function loginValidate(req: Request, res: Response, next: NextFunction) {
 }
 
 // Logout through FusionClient
-function logout(req: Request, res: Response, next: NextFunction) {
+function logout(req: Request, res: Response) {
   try {
     Fusionclient.logout(req.body.token)
       .then((response: any) => {
