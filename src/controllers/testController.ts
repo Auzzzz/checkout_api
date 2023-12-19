@@ -47,6 +47,24 @@ function fusionLoginTest(req: Request, res: Response, next: NextFunction) {
 
   Fusionclient.login(obj).then((response: any) => {
     console.log(response);
+    res.status(response.statusCode).send(response);
+  }).catch((err: any) => {
+    console.log(err);
+    res.status(err.statusCode).send(err);
+  })
+}
+
+function fusionRefreshToken(req: Request, res: Response, next: NextFunction) {
+  const obj = {
+    "applicationId": "4742477a-5fa5-4aa0-8077-6618a8e82b64",
+    "loginId": "test@downunderdev.com",
+    "password": 'testtest'
+  }
+
+  Fusionclient.token()
+
+  Fusionclient.login(obj).then((response: any) => {
+    console.log(response);
     res.send(response);
   }).catch((err: any) => {
     console.log(err);
@@ -54,6 +72,17 @@ function fusionLoginTest(req: Request, res: Response, next: NextFunction) {
   })
 }
 
+function fusionGetApplication(req: Request, res: Response, next: NextFunction) {
+
+  Fusionclient.retrieveApplication("4742477a-5fa5-4aa0-8077-6618a8e82b64").then((response: any) => {
+    console.log(response.response.application.roles);
+    res.send(response);
+  }
+  ).catch((err: any) => {
+    console.log(err);
+    res.send(err);
+  })
+}
 
 
 
@@ -101,4 +130,4 @@ function fusionRole(req: Request, res: Response, next: NextFunction) {
   res.json(result);
 }
 
-export default { getHello, fusionHello, fusionPanic, fusionRole, fusionTest, fusionLoginTest, fusionValidateToken };
+export default { getHello, fusionHello, fusionPanic, fusionRole, fusionTest, fusionLoginTest, fusionValidateToken, fusionRefreshToken, fusionGetApplication };

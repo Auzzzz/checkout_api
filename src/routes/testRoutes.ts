@@ -19,5 +19,7 @@ router.get('/fusion', testController.fusionHello)
 router.post('/fusion/panic', testController.fusionPanic)
 router.get('/fusiontest', testController.fusionTest)
 router.get('/fusionLoginTest', testController.fusionLoginTest)
+// router.get('/fusionRefreshToken', testController.fusionRefreshToken)
+router.get('/fusionApplication', testController.fusionGetApplication)
 router.get('/fusionLoginValidate', testController.fusionValidateToken)
 export default router

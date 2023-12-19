@@ -15,6 +15,7 @@ COPY env .env
 
 #build
 RUN npm run build
+RUN npx prisma generate
 RUN npx prisma db pull
 
 # Expose port
