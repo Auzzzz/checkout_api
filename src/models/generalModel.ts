@@ -12,3 +12,18 @@ export const IdOnlySchema = z.object({
     id: z.number().min(1).max(255),
   }),
 });
+
+
+export const groupItemSchema = z.object({
+  body: z.object({
+    groupId: z.number().min(1).max(255),
+    itemId: z.number().min(1).max(255),
+  }),
+});
+
+export const groupVenueSchema = z.object({
+  body: z.object({
+    groupId: z.number().min(1).max(255),
+    venueId: z.number().min(1).max(255),
+  }),
+});
