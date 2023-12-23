@@ -47,7 +47,7 @@ function fusionLoginTest(req: Request, res: Response, next: NextFunction) {
 
   Fusionclient.login(obj).then((response: any) => {
     console.log(response);
-    res.status(response.statusCode).send(response);
+    res.send(response);
   }).catch((err: any) => {
     console.log(err);
     res.status(err.statusCode).send(err);
