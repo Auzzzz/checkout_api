@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 const jwt = require("jsonwebtoken");
 
 // verify jwt
+//TODO: add force change password
 const authCheck = (req: Request, res: Response, next: NextFunction) => {
   const { token, uid } = req.headers;
 

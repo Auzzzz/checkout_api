@@ -8,10 +8,10 @@ const { authCheckFusion } = require("../services/authCheckFusion");
 const router = express.Router();
 
 
-router.get("/", validate(IdOnlySchema), itemsController.getItem);
-router.post("/", validate(createVenueSchema), itemsController.postItem);
-router.delete("/", validate(IdOnlySchema), itemsController.deleteItem);
-router.put("/", validate(createVenueSchema), itemsController.updateItem);
+router.get("/", authCheck, validate(IdOnlySchema), itemsController.getItem);
+router.post("/", authCheck, validate(createVenueSchema), itemsController.postItem);
+router.delete("/", authCheck,  validate(IdOnlySchema), itemsController.deleteItem);
+router.put("/", authCheck, validate(createVenueSchema), itemsController.updateItem);
 
 router.get("/all", authCheck, itemsController.getItems);
 router.get("/all/f", authCheckFusion, itemsController.getItems);
