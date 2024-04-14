@@ -17,12 +17,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Test{
-  id        String   @id @default(uuid())
-  text      String
-}
-
-
 model Items {
   id          Int          @id @default(autoincrement())
   name        String
@@ -36,9 +30,8 @@ model Items {
 
 model Users {
   id           Int            @id @default(autoincrement())
+  F_ID         String
   name         String         @unique
-  email        String         @unique
-  password     String
   GroupMembers GroupMembers[]
   Logs         Logs[]
 }
@@ -47,6 +40,8 @@ model Venues {
   id          Int           @id @default(autoincrement())
   name        String
   description String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
   GroupVenues GroupVenues[]
 }
 

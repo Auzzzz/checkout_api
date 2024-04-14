@@ -25,7 +25,7 @@ const authCheckFusion = async (req: Request, res: Response, next: NextFunction) 
       return next();
     }
   } catch (err) {
-    return next(res.status(401).send({ message: "Unauthorized! 2", err: err }));
+    return next(res.status(401).send({ message: "Unauthorized! 3", err: err }));
   }
 };
 
