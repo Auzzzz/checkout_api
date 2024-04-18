@@ -27,13 +27,9 @@ function login(req: Request, res: Response, next: NextFunction) {
 
 // Accept Refresh Token, return JWT through FusionClient
 function loginRefresh(req: Request, res: Response, next: NextFunction) {
-  const obj = {
-    applicationId: process.env.CLIENT_ID,
-    refreshToken: req.body.refreshToken,
-  };
 
   try {
-    Fusionclient.refreshToken(obj)
+    Fusionclient.exchangeRefreshTokenForAccessToken(req.body.refreshToken, process.env.CLIENT_ID, process.env.CLIENT_SECRET)
       .then((response: any) => {
         res.status(response.statusCode).send(response);
       })

@@ -14,16 +14,14 @@ async function getItems(req: Request, res: Response, next: NextFunction) {
 }
 
 async function getItem(req: Request, res: Response, next: NextFunction) {
-  const { id } = req.body;
-  
-  console.log(req)
-
+  const id = Number(req.params.id);
+  console.log("REQ", req.params.id)
   try {
     const item = await prisma.items.findUnique({
       where: { id: id },
     });
 
-    return res.status(200).json({item, req});
+    return res.status(200).json({ item });
   } catch (error) {
     console.log(error);
     return res.status(500).json(error);
