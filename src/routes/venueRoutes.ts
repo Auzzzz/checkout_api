@@ -19,6 +19,6 @@ router.put("/", authCheck, validate(createVenueSchema), venueController.updateVe
 
 router.get("/all", venueController.getVenues);
 
-router.get("/all/f", authCheckFusion, venueController.getVenues);
+router.get("/all", authCheckFusion, venueController.getVenues);
 
 export default router;

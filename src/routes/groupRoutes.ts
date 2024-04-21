@@ -13,6 +13,7 @@ router.post("/",authCheck, validate(createVenueSchema), groupController.createGr
 router.delete("/", authCheck, validate(IdOnlySchema), groupController.deleteGroup);
 router.put("/", authCheck, validate(createVenueSchema), groupController.updateGroup);
 
-router.get("/all", authCheck, groupController.getGroups);
+router.get("/all", authCheckFusion, groupController.getGroups);
+router.get("/:id", groupController.getGroup);
 
 export default router;
