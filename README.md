@@ -1,40 +1,16 @@
----
-title: ExpressJS Prisma
-description: An ExpressJS server that uses Prisma to connect to a PostgreSQL database
-tags:
-  - express
-  - postgresql
-  - prisma
-  - typescript
----
+# Checkout API
+Checkout is designed to keep track of individual items through tracking who is signing them in and out. 
 
-# ExpressJS Prisma Example
+Items can be assigned to different user groups, venues & departments allowing for all items to be broken down to individual sections of a business. Checkout Web is build upon NextJS, ExpressJS & FusionAuth, Express allows for quick and rapid API development along side FusionAuth that allows checkout to implement multi-tenanted, role based authentication allowing for easy development & potential future growth
 
-This is an [ExpressJS](https://expressjs.com/) REST API that uses [Prisma](https://www.prisma.io/) to connect to a Postgres database and CRUD todos.
+Checkout API is build using ExpressJS using Prisma for a ORM along with Typescript, deployed on a server utilizing  Docker to deploy Express, a instance of FusionAuth & PostgreSQL instance that all communicate via the docker network & is only accessible through the ExpressJS API apart for some calls made to FusionAuth (SDKs & Oauth)
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/LqCw_O)
+## Infra
+![Alt text](https://github.com/Auzzzz/expressjs-railway-api/blob/main/Checkout.png "Checkout Infra diagram")
+https://excalidraw.com/#json=Pj399mekYoHgd4Hmh6hR7,aKckj4Q98XGVrtjf2tjRZg
 
-## ✨ Features
+## Other Repo's
+ExpressJS API - https://github.com/Auzzzz/checkout_web
 
-- Prisma
-- Express
-- Postgres
-- TypeScript
 
-## 💁‍♀️ How to use
 
-- Install dependencies `yarn`
-- [Provision a Postgres container on Railway](https://dev.new)
-- Connect to your Railway project with `railway link`
-- Migrate the database `railway run yarn migrate:dev`
-- Run the Server app `railway run yarn dev`
-
-## 📝 Notes
-
-This is a simple REST API for todo items. The available routes are
-
-- `GET /todos` gets all todos
-- `POST /todos` creates a new using `text` in the JSON body
-- `GET /todos/:id` gets a todo by id
-- `PUT /todos/:id` updates a todo by id
-- `DELETE /todos/:id` deletes a todo by id
