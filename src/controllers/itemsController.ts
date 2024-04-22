@@ -15,11 +15,53 @@ async function getItems(req: Request, res: Response, next: NextFunction) {
 
 async function getItem(req: Request, res: Response, next: NextFunction) {
   const id = Number(req.params.id);
-  console.log("REQ", req.params.id)
+
   try {
     const item = await prisma.items.findUnique({
       where: { id: id },
+      include: {
+        GroupItems: {
+          select: {
+            group: true,
+          },
+        },
+      },
+      
     });
+
+    if(item.GroupItems.length > 0){
+      const group = await prisma.groups.findUnique({
+        where: { id: item.GroupItems[0].group.id },
+        include: {
+          GroupItems: {
+            select: {
+              item: true,
+            },
+          },
+          GroupMembers: {
+            select: {
+              id: true,
+            },
+          },
+          GroupVenues: {
+            select: {
+              venue: true,
+            },
+          },
+          GroupDepartments: {
+            select: {
+              department: true,
+            },
+          },
+          Group_Flags: {
+            select: {
+              flag: true,
+            },
+          },
+        },
+      });
+      return res.status(200).json({ item, group });
+    }
 
     return res.status(200).json({ item });
   } catch (error) {

@@ -3,15 +3,13 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL2")
+  url      = env("DATABASE_URL")
 }
 
 // datasource db {
 //   provider = "sqlite"
 //   url      = "file:./dev.db"
 // }
-
-
 
 generator client {
   provider = "prisma-client-js"
@@ -40,10 +38,20 @@ model Venues {
   id          Int           @id @default(autoincrement())
   name        String
   description String
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
   GroupVenues GroupVenues[]
 }
+
+model Department {
+  id          Int           @id @default(autoincrement())
+  name        String
+  description String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  GroupDepartments GroupDepartments[]
+}
+
 
 model Groups {
   id           Int            @id @default(autoincrement())
@@ -53,7 +61,9 @@ model Groups {
   GroupVenues  GroupVenues[]
   GroupItems   GroupItems[]
   Group_Flags  Group_Flags[]
+  GroupDepartments GroupDepartments[]
 }
+
 
 model GroupMembers {
   id      Int @id @default(autoincrement())
@@ -80,6 +90,15 @@ model GroupItems {
 
   group Groups @relation(fields: [groupId], references: [id], onDelete: Cascade)
   item  Items  @relation(fields: [itemId], references: [id], onDelete: Cascade)
+}
+
+model GroupDepartments {
+  id           Int @id @default(autoincrement())
+  groupId      Int
+  departmentId Int
+
+  group      Groups      @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  department Department  @relation(fields: [departmentId], references: [id], onDelete: Cascade)
 }
 
 model Flags {
