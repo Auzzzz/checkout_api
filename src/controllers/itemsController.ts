@@ -23,45 +23,11 @@ async function getItem(req: Request, res: Response, next: NextFunction) {
         GroupItems: {
           select: {
             group: true,
-          },
+          }
         },
       },
       
     });
-
-    if(item.GroupItems.length > 0){
-      const group = await prisma.groups.findUnique({
-        where: { id: item.GroupItems[0].group.id },
-        include: {
-          GroupItems: {
-            select: {
-              item: true,
-            },
-          },
-          GroupMembers: {
-            select: {
-              id: true,
-            },
-          },
-          GroupVenues: {
-            select: {
-              venue: true,
-            },
-          },
-          GroupDepartments: {
-            select: {
-              department: true,
-            },
-          },
-          Group_Flags: {
-            select: {
-              flag: true,
-            },
-          },
-        },
-      });
-      return res.status(200).json({ item, group });
-    }
 
     return res.status(200).json({ item });
   } catch (error) {
@@ -108,6 +74,9 @@ async function postItem(req: Request, res: Response, next: NextFunction) {
         data: {
           name: name,
           description: description,
+          
+
+
         },
       });
       return res.status(200).json(item);

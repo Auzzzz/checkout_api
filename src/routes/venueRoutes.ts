@@ -12,7 +12,7 @@ const router = express.Router();
 // router.get('/', testController.getHello)
 // router.post('/',validate(testSchema), testController.postTest)
 
-router.get("/", authCheck, validate(IdOnlySchema), venueController.getVenue);
+router.get("/:id", venueController.getVenue);
 router.post("/", authCheck, validate(createVenueSchema), venueController.postVenue);
 router.delete("/", authCheck, validate(IdOnlySchema), venueController.deleteVenue);
 router.put("/", authCheck, validate(createVenueSchema), venueController.updateVenue);

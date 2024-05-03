@@ -14,16 +14,19 @@ async function getVenues(req: Request, res: Response, next: NextFunction) {
 }
 
 async function getVenue(req: Request, res: Response, next: NextFunction) {
-  const { id } = req.body;
+  const id = Number(req.params.id);
   try {
     const venue = await prisma.venues.findUnique({
       where: { id: id },
-      select: {
-        id: true,
-        name: true,
+      include: {
+        GroupVenues: {
+          select: {
+            group: true,
+          },
+        },
       },
     });
-    return res.status(200).json(venue);
+    return res.status(200).json({venue});
   } catch (error) {
     console.log(error);
     return res.status(500).json(error);
