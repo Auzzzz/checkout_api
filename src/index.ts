@@ -16,3 +16,6 @@ app.use(routes)
 app.listen(Number(port), "0.0.0.0", () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });
+
+
+//TODO: orderby on all get requests

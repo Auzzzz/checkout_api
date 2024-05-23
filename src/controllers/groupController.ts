@@ -48,7 +48,7 @@ async function getGroup(req: Request, res: Response, next: NextFunction) {
       },
     });
 
-    return res.status(200).json({ groups });
+    return res.status(200).json(groups);
   } catch (error) {
     console.log(error);
     return res.status(500).json(error);

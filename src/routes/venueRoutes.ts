@@ -11,13 +11,13 @@ const router = express.Router();
 
 // router.get('/', testController.getHello)
 // router.post('/',validate(testSchema), testController.postTest)
+router.get("/all", venueController.getVenues);
 
 router.get("/:id", venueController.getVenue);
 router.post("/", authCheck, validate(createVenueSchema), venueController.postVenue);
 router.delete("/", authCheck, validate(IdOnlySchema), venueController.deleteVenue);
 router.put("/", authCheck, validate(createVenueSchema), venueController.updateVenue);
 
-router.get("/all", venueController.getVenues);
 
 router.get("/all", authCheckFusion, venueController.getVenues);
 
